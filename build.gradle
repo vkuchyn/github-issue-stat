@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     compile 'com.google.guava:guava:19.0'
+    compile 'com.jcabi:jcabi-github:0.27'
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-all:1.3'
 }

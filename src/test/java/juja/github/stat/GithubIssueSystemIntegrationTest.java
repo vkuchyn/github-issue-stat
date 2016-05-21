@@ -1,5 +1,7 @@
 package juja.github.stat;
 
+import com.jcabi.github.Github;
+import com.jcabi.github.RtGithub;
 import org.junit.Test;
 
 import java.time.Duration;
@@ -14,17 +16,20 @@ import static org.hamcrest.Matchers.hasSize;
  */
 public class GithubIssueSystemIntegrationTest {
     @Test
-    public void calculateTimeTrack() throws Exception {
-        List<TimeReport> reports = new GithubIssueSystem().fetchTimeReports();
-        assertThat(reports, hasSize(2));
+    public void fetchTimeReportsFromGithub() throws Exception {
+        Github github = new RtGithub();
+        List<TimeReport> reports = new GithubIssueSystem(github, "vkuchyn", "github-issue-stat").fetchTimeReports();
+        assertThat(reports, hasSize(3));
         assertThat(reports, hasItem(new TimeReport(
-            "220794586", "https://github.com/vkuchyn/github-issue-stat/issues/1#issuecomment-220794586",
+            "220794548", "https://github.com/vkuchyn/github-issue-stat/issues/1#issuecomment-220794548",
             "Some text before time report\n@JujaD time spent 10m\nSome text after report",
+            "vkuchyn",
             Duration.ofMinutes(10L)
         )));
         assertThat(reports, hasItem(new TimeReport(
             "220794605", "https://github.com/vkuchyn/github-issue-stat/issues/1#issuecomment-220794605",
-            "@JujaD time spend 1h 65m some text and more 20m",
+            "@JujaD time spend 1h65m some text and more 20m",
+            "vkuchyn",
             Duration.ofMinutes(145L)
         )));
 

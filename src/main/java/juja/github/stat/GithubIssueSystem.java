@@ -17,8 +17,10 @@ import static java.util.stream.Collectors.toList;
 public final class GithubIssueSystem implements IssueSystem {
 
     private final Repo repo;
+    private final String manager;
 
-    public GithubIssueSystem(Github github, String owner, String name) {
+    public GithubIssueSystem(Github github, String owner, String name, String manager) {
+        this.manager = manager.toLowerCase();
         this.repo = github.repos().get(new Coordinates.Simple(owner, name));
     }
 
@@ -34,7 +36,7 @@ public final class GithubIssueSystem implements IssueSystem {
             try {
                 String content = new Comment.Smart(comment).body().toLowerCase();
                 Set<String> words = new HashSet<>(Arrays.asList(content.split("\\s+")));
-                return words.contains("@jujad") && containsTimeReport(words)
+                return words.contains(this.manager) && containsTimeReport(words)
                     && (words.contains("time")
                     || words.contains("spent") || words.contains("spend"));
             } catch (IOException e) {

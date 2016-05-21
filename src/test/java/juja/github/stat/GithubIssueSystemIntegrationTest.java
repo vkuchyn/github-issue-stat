@@ -18,7 +18,7 @@ public class GithubIssueSystemIntegrationTest {
     @Test
     public void fetchTimeReportsFromGithub() throws Exception {
         Github github = new RtGithub();
-        List<TimeReport> reports = new GithubIssueSystem(github, "vkuchyn", "github-issue-stat").fetchTimeReports();
+        List<TimeReport> reports = new GithubIssueSystem(github, "vkuchyn", "github-issue-stat", "@jujad").fetchTimeReports();
         assertThat(reports, hasSize(3));
         assertThat(reports, hasItem(new TimeReport(
             "220794548", "https://github.com/vkuchyn/github-issue-stat/issues/1#issuecomment-220794548",

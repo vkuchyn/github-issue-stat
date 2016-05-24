@@ -1,6 +1,7 @@
 package juja.github.stat;
 
 import com.google.common.base.Objects;
+import org.springframework.data.annotation.Id;
 
 import java.time.Duration;
 
@@ -8,6 +9,7 @@ import java.time.Duration;
  * @author viktor email kuchin.victor@gmail.com
  */
 public class TimeReport {
+    @Id
     private final String id;
     private final String url;
     private final String text;

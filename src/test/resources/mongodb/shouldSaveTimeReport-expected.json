@@ -1,0 +1,14 @@
+{
+  "timeReport": [
+    {
+      "_id": "123",
+      "url": "url",
+      "text": "test comment",
+      "author": "JujaD",
+      "duration": {
+        "seconds": 7200,
+        "nanos": 0
+      }
+    }
+  ]
+}

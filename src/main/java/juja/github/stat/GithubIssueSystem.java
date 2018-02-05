@@ -28,10 +28,11 @@ public final class GithubIssueSystem implements IssueSystem {
     public List<TimeReport> fetchTimeReports() throws IOException {
         final EnumMap<Issues.Qualifier, String> qualifiers = new EnumMap<>(Issues.Qualifier.class);
         qualifiers.put(Issues.Qualifier.STATE, Issue.OPEN_STATE);
+        qualifiers.put(Issues.Qualifier.LABELS, "prod");//ready,in progress,review,stage,QA,prod,CLOSE IT
         Iterable<Issue> issues = repo.issues().search(Issues.Sort.CREATED, Search.Order.ASC, qualifiers);
 
-        return StreamSupport.stream(issues.spliterator(), false).flatMap(
-            issue -> StreamSupport.stream(issue.comments().iterate().spliterator(), false)
+        return StreamSupport.stream(issues.spliterator(), true).flatMap(
+            issue -> StreamSupport.stream(issue.comments().iterate().spliterator(), true)
         ).filter(comment -> {
             try {
                 String content = new Comment.Smart(comment).body().toLowerCase();

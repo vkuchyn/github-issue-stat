@@ -24,6 +24,26 @@ public class TimeReport {
         this.duration = duration;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public String getAuthor() {
+        return this.author;
+    }
+
+    public Duration getDuration() {
+        return this.duration;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

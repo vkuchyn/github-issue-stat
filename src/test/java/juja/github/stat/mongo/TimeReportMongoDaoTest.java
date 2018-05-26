@@ -34,7 +34,7 @@ public class TimeReportMongoDaoTest {
     @ShouldMatchDataSet(location = "/mongodb/shouldSaveTimeReport-expected.json")
     public void shouldSaveTimeReport() throws Exception {
         TimeReport report = new TimeReport("123", "url", "test comment",
-            "JujaD", Duration.ofHours(2));
+            "JujaD", Duration.ofHours(2),"1","FirstIssue");
         dao.saveTimeReport(report);
     }
 }

@@ -8,7 +8,10 @@
       "duration": {
         "seconds": 7200,
         "nanos": 0
-      }
+      },
+       "issueNumber":"1",
+      "parentIssueNumber":"FirstIssue"
+
     }
   ]
 }

@@ -10,6 +10,9 @@ import com.jcabi.github.Search;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -37,8 +40,12 @@ public final class GithubIssueSystem implements IssueSystem {
 
     @Override
     public List<TimeReport> fetchTimeReports() throws IOException {
+        LocalDateTime ldt = LocalDateTime.now().minusMonths(1L);
+        ZonedDateTime zdt = ldt.atZone(ZoneOffset.UTC);
+
         final EnumMap<Issues.Qualifier, String> qualifiers = new EnumMap<>(Issues.Qualifier.class);
         qualifiers.put(Issues.Qualifier.STATE, "all");
+        qualifiers.put(Issues.Qualifier.SINCE,zdt.toString());
 
 //        qualifiers.put(Issues.Qualifier.LABELS, "prod");//ready,in progress,review,stage,QA,prod,CLOSE IT
         Iterable<Issue> issues = repo.issues().search(Issues.Sort.CREATED, Search.Order.ASC, qualifiers);

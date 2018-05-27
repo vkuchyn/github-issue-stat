@@ -42,7 +42,7 @@ public class LocalStarter {
             System.out.println("------------------------------------------------------------------");
         }
 
-        System.out.println("\nTime by author:");
+        System.out.println("\nTime by author for all issues:");
         final Map<String, Duration> map = durationByAuthor(timeReports);
         System.out.println(map);
     }
